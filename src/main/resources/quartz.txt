@@ -1,0 +1,20 @@
+# Main Quartz configuration
+org.quartz.scheduler.skipUpdateCheck = true
+org.quartz.scheduler.instanceName = MysqlDatabaseClusteredScheduler
+org.quartz.scheduler.instanceId = AUTO
+org.quartz.scheduler.jobFactory.class = org.quartz.simpl.SimpleJobFactory
+org.quartz.jobStore.class = org.quartz.impl.jdbcjobstore.JobStoreTX
+org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+org.quartz.jobStore.dataSource = quartzDataSource
+org.quartz.jobStore.tablePrefix = QRTZ_
+org.quartz.jobStore.isClustered = true
+org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool
+org.quartz.threadPool.threadCount = 5
+
+# JobStore: JDBC jobStoreTX
+org.quartz.dataSource.quartzDataSource.driver = com.mysql.jdbc.Driver
+org.quartz.dataSource.quartzDataSource.URL = jdbc:mysql://localhost:8889/quartz
+org.quartz.dataSource.quartzDataSource.user = root
+org.quartz.dataSource.quartzDataSource.password = root
+# Recommend threadPool size + 3
+org.quartz.dataSource.quartzDataSource.maxConnections = 8
