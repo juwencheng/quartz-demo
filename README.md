@@ -13,6 +13,15 @@
 # 准备
 初始化数据库表，执行resources/mysql/init.sql文件，创建`sys_task_log`和`sys_task`表，分别表示任务执行日志表和任务表。
 
+添加`dependency`到`pom.xml`中
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-quartz</artifactId>
+</dependency>
+```
+
 # 集成
 
 ## 1. 拷贝 com 包到项目的 java 包下面
