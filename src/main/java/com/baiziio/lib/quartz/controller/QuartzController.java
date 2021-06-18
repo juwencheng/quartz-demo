@@ -18,40 +18,46 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/quartz")
+@RequestMapping("maintenance/task")
 public class QuartzController {
 
     @Autowired
     private SysTaskService taskService;
 
 
-    @PostMapping("createTask")
+    @PostMapping("add")
     public SysTaskEntity createTask(@RequestBody SysTaskEntity taskEntity) {
 //        String cron = "0/10 * * * * ? *";
         return taskService.createOrUpdateTask(taskEntity);
     }
 
-    @GetMapping("deleteTask")
+    @GetMapping("delete")
     public Boolean deleteTask(@RequestParam Integer id) {
         return taskService.deleteTask(id);
     }
 
-    @GetMapping("pauseTask")
+    @GetMapping("pause")
     public Boolean pauseTask(@RequestParam Integer id) {
         return taskService.pauseTask(id);
     }
 
-    @GetMapping("resumeTask")
+    @GetMapping("resume")
     public Boolean resumeTask(@RequestParam Integer id) {
         return taskService.resumeTask(id);
     }
 
-    @GetMapping("triggerTask")
+    @GetMapping("trigger")
     public Boolean triggerTask(@RequestParam Integer id) {
         return taskService.triggerTask(id);
     }
 
-    @GetMapping("taskList")
+    @GetMapping("trigger")
+    public Boolean redeployTask(@RequestParam Integer id) {
+        taskService.deployTask(id);
+        return true;
+    }
+
+    @GetMapping("list")
     public List<SysTaskEntity> taskList() {
         return taskService.taskList();
     }
